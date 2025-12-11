@@ -1,5 +1,5 @@
 declare module "nodemailer" {
-  const nodemailer: any;
+  const nodemailer: Record<string, unknown>;
   export default nodemailer;
 }
 

@@ -41,7 +41,7 @@ async function testConnection() {
 
 testConnection();
 
-export async function query<T = any>(sql: string, params: any[] = []): Promise<T[]> {
+export async function query<T = Record<string, unknown>>(sql: string, params: unknown[] = []): Promise<T[]> {
   let connection;
   try {
     connection = await pool.getConnection();
