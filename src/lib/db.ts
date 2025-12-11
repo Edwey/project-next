@@ -22,8 +22,14 @@ const pool = mysql.createPool({
   keepAliveInitialDelay: 10000,
 });
 
-// Test the connection on startup
+// Test the connection on startup (only in development)
 async function testConnection() {
+  // Skip connection test during build process
+  if (process.env.NODE_ENV === 'production' && process.env.VERCEL === '1') {
+    console.log('Skipping database connection test during Vercel build');
+    return;
+  }
+  
   try {
     const conn = await pool.getConnection();
     console.log('Successfully connected to the database');
