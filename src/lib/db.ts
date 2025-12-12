@@ -3,6 +3,15 @@ import mysql from "mysql2/promise";
 // Create a database connection at runtime (not global pool)
 // This ensures SSL is applied correctly in production environments like Vercel
 export async function getDB() {
+  // Debug: Check if environment variables are available
+  console.log("ENV CHECK:", {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS ? '***' : 'undefined',
+    database: process.env.DB_NAME
+  });
+
   const config = {
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
@@ -22,6 +31,8 @@ export async function getDB() {
     database: config.database,
     ssl: !!config.ssl
   });
+
+  console.log("SSL CHECK:", config.ssl); // Debug SSL configuration
 
   return mysql.createConnection(config);
 }
