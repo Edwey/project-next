@@ -300,7 +300,7 @@ export async function POST(req: Request) {
       );
     }
 
-    let closeDate = section.registration_deadline || section.end_date || null;
+    const closeDate = section.registration_deadline || section.end_date || null;
     if (closeDate && today > closeDate) {
       return NextResponse.json(
         { success: false, error: "Enrollment is closed for this term." },

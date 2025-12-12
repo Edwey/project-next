@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 type Program = {
   id: number;
@@ -145,7 +146,7 @@ export default function ApplyPage() {
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Application Submitted Successfully!</h2>
           <p className="text-gray-600 mb-6">
-            Thank you for your application to VoltaTech University. We've received your information and will review it shortly.
+            Thank you for your application to VoltaTech University. We have received your information and will review it shortly.
             You will receive a confirmation email with further instructions.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -155,12 +156,12 @@ export default function ApplyPage() {
             >
               Submit Another Application
             </button>
-            <a
+            <Link
               href="/"
               className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors text-center"
             >
               Return to Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

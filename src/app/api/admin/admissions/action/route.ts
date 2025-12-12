@@ -260,7 +260,6 @@ async function generateUniqueUsername(base: string): Promise<string> {
   let username = base;
   let tryCount = 1;
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const rows = await query<{ id: number }>(
       "SELECT id FROM users WHERE username = ? LIMIT 1",

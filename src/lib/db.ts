@@ -50,8 +50,7 @@ export async function query<T = Record<string, unknown>>(sql: string, params: un
   } catch (error: unknown) {
     const message =
       error && typeof error === "object" && "message" in error
-        ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (error as any).message
+        ? (error as Record<string, unknown>).message as string
         : String(error);
     console.error('Database query error:', { 
       error: message, 

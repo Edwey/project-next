@@ -87,7 +87,6 @@ export default function AdmissionsAnalyticsPage() {
 
   useEffect(() => {
     loadAnalytics();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleApply(e: React.FormEvent) {

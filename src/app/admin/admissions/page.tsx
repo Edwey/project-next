@@ -101,7 +101,6 @@ export default function AdmissionsPage() {
 
   useEffect(() => {
     loadAdmissions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleApplyFilters(e: React.FormEvent) {
