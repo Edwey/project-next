@@ -1,5 +1,22 @@
 declare module "nodemailer" {
-  const nodemailer: Record<string, unknown>;
+  interface SendMailOptions {
+    from?: string;
+    to?: string | string[];
+    subject?: string;
+    text?: string;
+    html?: string;
+  }
+
+  interface Transporter {
+    sendMail(options: SendMailOptions): Promise<Record<string, unknown>>;
+  }
+
+  function createTransport(transport: Record<string, unknown>): Transporter;
+  
+  const nodemailer: {
+    createTransport: typeof createTransport;
+  };
+  
   export default nodemailer;
 }
 
