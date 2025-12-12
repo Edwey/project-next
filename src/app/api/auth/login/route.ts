@@ -3,6 +3,7 @@ import { query } from "@/lib/db";
 import { setSessionCookie, setPendingMfaSession } from "@/lib/auth";
 import bcrypt from "bcryptjs";
 import { generateEmailOtp } from "@/lib/otp";
+import { checkDatabaseConnection } from "@/lib/db-connection-check";
 
 // Helper to get error message from unknown error type
 function getErrorMessage(error: unknown): string {
@@ -12,6 +13,19 @@ function getErrorMessage(error: unknown): string {
 
 export async function POST(req: Request) {
   try {
+    // Check database connection first
+    const isDbConnected = await checkDatabaseConnection();
+    if (!isDbConnected) {
+      console.error('Database connection failed during login attempt');
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "Service temporarily unavailable - database connection failed" 
+        },
+        { status: 503 }
+      );
+    }
+
     // Parse request body
     let body;
     try {
