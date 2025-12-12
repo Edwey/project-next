@@ -21,7 +21,7 @@ const pool = mysql.createPool({
   enableKeepAlive: true,
   keepAliveInitialDelay: 10000,
   // Add SSL support for TiDB Cloud
-  ssl: process.env.DB_SSL && process.env.DB_SSL !== 'false' ? {
+  ssl: process.env.DB_HOST?.includes('tidbcloud.com') ? {
     rejectUnauthorized: true
   } : undefined
 });
